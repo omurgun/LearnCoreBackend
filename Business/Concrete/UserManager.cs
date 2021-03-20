@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Utilities.Results;
 
 namespace Business.Concrete
 {
@@ -31,6 +32,11 @@ namespace Business.Concrete
         public User GetByMail(string email)
         {
             return _userDal.Get(u => u.Email == email);
+        }
+
+        public IDataResult<List<User>> GetAllUser()
+        {
+            return new SuccessDataResult<List<User>>(_userDal.GetAll());
         }
     }
 }
